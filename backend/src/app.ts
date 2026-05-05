@@ -24,4 +24,4 @@ ROUTES
 ---------------------- */
 app.use("/shows", showsRouter);
 
-export default app;
+export { app };
