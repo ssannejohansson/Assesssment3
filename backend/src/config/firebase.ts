@@ -20,4 +20,3 @@ if (!admin.apps.length) {
  
 export const auth = admin.auth();
 
-}

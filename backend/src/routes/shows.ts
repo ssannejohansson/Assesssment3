@@ -18,7 +18,7 @@ showsRouter.get("/:id", (req: Request, res: Response) => {
     const show = shows.find((s) => s.id === req.params.id);
 
     if (!show) {
-        return res.status(404).json({ message: "Show not found" });
+        res.status(404).json({ error: "Show not found" });
         return;
     }
 
@@ -90,5 +90,5 @@ showsRouter.post("/:id/reviews", verifyToken, (req: Request, res: Response) => {
     };
 
     show.reviews.push(newReview);
-    res.status(200).json(newReview);
+    res.status(201).json(newReview);
 })
