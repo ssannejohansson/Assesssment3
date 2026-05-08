@@ -1,0 +1,113 @@
+/* ------------------------------------------
+CSS VARIABLES
+--------------------------------------------- */
+:root {
+      --bg: #141414;
+      --surface: #1f1f1f;
+      --red: #e50914;
+      --red-hover: #b20710;
+      --text: #ffffff;
+      --text-muted: #b3b3b3;
+      --input-bg: #333333;
+      --radius: 4px;
+      }
+
+
+/* ------------------------------------------
+RESET & BASE
+--------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: "Helvetica Neue", sans-serif;
+    min-height: 100vh;
+}
+
+/* ------------------------------------------
+UTILITY
+--------------------------------------------- */
+.hidden {
+    display: none !important;
+}
+
+.error {
+    color: var(--red);
+    font-size: 0.875rem;
+    margin-top: 8px;
+}
+
+/* ------------------------------------------
+NAVBAR
+--------------------------------------------- */
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 16px 48px;
+}
+
+.logo {
+    color: var(--red);
+    font-size: 1.5rem; 
+    font-weight: 700;
+    letter-spacing: 2px; 
+    margin-right: auto;
+}
+
+#nav-user {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* ------------------------------------------
+NAVBAR
+--------------------------------------------- */
+button {
+    background-color: var(--red);
+    color: var(--text);
+    border: none;
+    border-radius: var(--radius);
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s; 
+}
+
+button:hover {
+    background-color: var(--red-hover);
+}
+
+/* ------------------------------------------
+INPUTS
+--------------------------------------------- */
+input, textarea {
+    background-color: var(--input-bg);
+    color: var(--text);
+    border: none;
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    font-size: 1rem;
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+input::placeholder, textarea::placeholder {
+    color: var(--muted);
+}
+
+textarea {
+    height: 120px;
+    resize: vertical;
+}
+
