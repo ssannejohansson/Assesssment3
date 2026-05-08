@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spoiler Room</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <!----------------------
+    NAVBAR
+    ----------------------->
+
+    <nav id="navbar" class="hidden">
+        <span class="logo">Spoiler Room</span>
+        <span id="nav-user"></span>
+        <button id="logout-btn">Logout</button>
+    </nav>
+
+    <!----------------------
+    VIEW: LOGIN
+    ----------------------->
+
+    <section id="login-view">
+        <h1>Login</h1>
+
+        <form id="login-form">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button id="login-btn" type="submit">Login</button>
+        </form>
+
+        <p id="login-error" class="error hidden"></p>
+
+    </section>
+
+    <!----------------------
+    VIEW: HOME
+    ----------------------->
+
+    <section id="home-view" class="hidden">
+        <h2>Popular Shows</h2>
+
+        <div id="shows-list"></div>
+        <p id="shows-error" class="error hidden"></p>
+
+        <div id="add-show-section" class="hidden">
+            <h3>Add New Show</h3>
+            <form id="add-show-form">
+                <input type="text" id="show-title" placeholder="Show Title" required>
+                <textarea id="show-description" placeholder="Show Description"></textarea>
+                <button id="add-show-btn" type="submit">Add Show</button>
+            </form>
+        </div>
+
+    </section>
+    <!----------------------
+    VIEW: SHOW DETAILS
+    ----------------------->
+    <section id="view-detail" class="hidden">
+      <button id="back-btn">← Back</button>
+
+      <h2 id="detail-title"></h2>
+      <p id="detail-review-count"></p>
+
+      <div id="review-list"></div>
+
+      <div id="add-review-section" class="hidden">
+        <h3>Write a Review</h3>
+        <textarea id="review-body" placeholder="Write your review..."></textarea>
+        <button id="add-review-btn" type="button">Publish Review</button>
+      </div>
+
+    </section>
+
+    <!----------------------
+    SCRIPTS
+    ----------------------->
+    <script type="module" src="app.js"></script>
+    
+</body>
+</html>
