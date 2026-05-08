@@ -111,3 +111,25 @@ textarea {
     resize: vertical;
 }
 
+/* ------------------------------------------
+VIEW: LOGIN
+--------------------------------------------- */
+#login-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    var(--bg);
+}
+
+#login-view h1 {
+    font-size: 2rem;
+    margin-bottom: 24px;
+}
+
+#login-view input, #login-view button {
+    width: 320px; 
+}
+
