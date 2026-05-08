@@ -61,3 +61,59 @@ onAuthStateChanged(auth, async (user) => {
         showView(viewLogin);
     }
 });
+
+/* ----------------------
+LOGIN
+---------------------- */
+
+document.getElementById("login-btn").addEventListener("click", async () => {
+    // Grab values from input fields.
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    try {
+        // Firebase signs the user in
+        await signInWithEmailAndPassword(auth, email, password);
+        loginError.classList.add("hidden");
+    } catch (err) {
+        // Show error message if login fails
+        loginError.textContent = renderError(err.message);
+        loginError.classList.remove("hidden");
+    }
+});
+
+/* ----------------------
+LOGOUT
+---------------------- */
+
+document.getElementById("logout-btn").addEventListener("click", async () => {
+    await signOut(auth);
+});
+
+/* ----------------------
+LOAD SHOWS 
+---------------------- */
+
+const loadShows = async () => {
+    try {
+        // GET /shows is public - no token needed
+        const res = await fetch(`${API}/shows`, {
+            credentials: "include",
+        });
+        
+        const data = await res.json();
+
+        // Render the show cards into the DOM
+        showList.innerHTML = renderShowList(data);
+
+        // attach click to each card after rendering
+        document.querySelectorAll(".show-card").forEach((card) => {
+            card.addEventListener("click", () => loadShowDetail(card.dataset.id));
+        });
+        
+    } catch (err) {
+        // Show error message if fetch fails
+        showError.textContent = renderError(err.message);
+        showError.classList.remove("hidden");
+    }
+};
