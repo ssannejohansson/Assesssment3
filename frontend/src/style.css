@@ -29,6 +29,11 @@ body {
     min-height: 100vh;
 }
 
+/* TEMP - remove when done styling */
+section {
+    min-height: 0 !important;
+}
+
 /* ------------------------------------------
 UTILITY
 --------------------------------------------- */
@@ -69,8 +74,23 @@ nav {
     font-size: 0.9rem;
 }
 
+#logout-btn {
+    background: none; 
+    border: 1px solid var(--text-muted);
+    color: var(--text-muted);
+    padding: 6px 16px;
+    font-size: 0.85rem;
+    font-weight: 400;
+}
+
+#logout-btn:hover {
+    border-color: var(--text);
+    color: var(--text);
+    background: none;
+}
+
 /* ------------------------------------------
-NAVBAR
+BUTTONS
 --------------------------------------------- */
 button {
     background-color: var(--red);
@@ -119,7 +139,7 @@ VIEW: LOGIN
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    height: 100vh;
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     var(--bg);
 }
@@ -131,5 +151,51 @@ VIEW: LOGIN
 
 #login-view input, #login-view button {
     width: 320px; 
+    display: block;
 }
 
+/* ------------------------------------------
+VIEW: HOME
+--------------------------------------------- */
+#home-view {
+    padding: 40px 48px;
+}
+
+#home-view h2 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+}
+
+/* ------------------------------------------
+SHOW GRID
+--------------------------------------------- */
+#shows-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 8px;
+    margin-bottom: 40px;
+}
+
+.show-card {
+    background-color: var(--surface);
+    border-radius: var(--radius);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.show-card:hover {
+    transform: scale(1.05);
+}
+
+.show-card__img {
+    width: 100%;
+    aspect-ratio: 2/3;
+    background-color: #333;
+}
+
+.show-card p {
+    padding: 8px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
