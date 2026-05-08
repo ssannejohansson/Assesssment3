@@ -117,3 +117,107 @@ const loadShows = async () => {
         showError.classList.remove("hidden");
     }
 };
+
+/* ----------------------
+ADD SHOW
+---------------------- */
+
+document.getElementById("add-show-btn").addEventListener("click", async () => {
+    // Grab the current firebase user and their token
+    const user = auth.currentUser;
+    const token = await user.getIdToken();
+
+    const title = document.getElementById("show-title").value;
+
+    try {
+        // POST /shows is protected, send bearer token in header
+        await fetch(`${API}/shows`, {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`, // required for protected routes.
+            },
+            body: JSON.stringify({ title }),
+        });
+
+        // Clear the input and reload the list
+        document.getElementById("show-title").value = "";
+        await loadShows();
+    } catch (err) {
+        showError.textContent = renderError(err.message);
+        showError.classList.remove("hidden");
+    }
+});
+
+/* ----------------------
+LOAD SHOW DETAIL
+---------------------- */
+
+const loadShowDetail = async (id) => {
+    try {
+        // GET /shows/:id is public, no token needed
+        const res = await fetch (`${API}/shows/${id}`, {
+            credentials: "include",
+        });
+        const show = await res.json();
+
+        // Populate the detail view with show data
+        document.getElementById("detail-title").textContent = show.title;
+        document.getElementById("detail-review-count").textContent = renderReviewCount(show.reviews?.length ?? 0);
+        document.getElementById("review-list").innerHTML = show.reviews
+        ?.map((r) => `<p>${r.body}</p>`)
+        .join("") ?? "";
+
+        // Store the ID on the review button so addReview knows which show
+        document.getElementById("add-review-btn".dataset.id = id);
+
+        showView(viewDetail);
+    } catch (err) {
+        showError.textContent = renderError(err.message);
+        showError.classList.remove("hidden"); 
+    }
+};
+
+/* ----------------------
+BACK BUTTON
+---------------------- */
+
+document.getElementById("back-btn").addEventListener("click", () => {
+    // Go back to home without reloading
+    showView(viewHome);
+});
+
+/* ----------------------
+ADD REVIEW
+---------------------- */
+
+document.getElementById("add-review-btn").addEventListener("click", async () => {
+    // Grab the show ID stored on the button
+    const id = document.getElementById("add-review-btn").dataset.id;
+    const body = document.getElementById("review.body").value;
+
+    // Grab the current firebase user and their token
+    const user = auth.currentUser;
+    const token = await user.getIdToken();
+
+    try {
+        // POST /shows/:id/reviews is protected, send bearer token
+        await fetch (`{API}/shows/${id}/reviews`, {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ body }),
+        });
+
+        // Clear the textarea and reload the detail view
+        document.getElementById("review-body").value = "";
+        await loadShowDetail(id);
+    } catch (err) {
+        showError.textContent = renderError(err.message);
+        showError.classList.remove("hidden");
+    }
+});
