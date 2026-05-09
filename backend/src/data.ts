@@ -184,4 +184,214 @@ export const shows: Show[] = [
     createdAt: new Date().toISOString(),
     createdBy: "seed",
   },
+  {
+    id: "14",
+    title: "The Sopranos",
+    description:
+      "New Jersey mob boss Tony Soprano navigates the competing demands of his criminal organization and his family life, aided by sessions with his psychiatrist.",
+    genre: "Crime/Drama",
+    year: 1999,
+    imageUrl: "https://image.tmdb.org/t/p/w500/57okjmCDbjLrEkRFNHibSWQhyMf.jpg",
+    reviews: [
+      {
+        id: "1",
+        title: "The show that changed television forever",
+        author: "tony@example.com",
+        rating: 5,
+        comment:
+          "Nothing that came before prepared audiences for this. The writing, the acting, the moral complexity — it set the template for every prestige drama that followed.",
+        createdAt: "2024-06-10T18:00:00.000Z",
+      },
+      {
+        id: "2",
+        author: "carmela@example.com",
+        rating: 5,
+        comment:
+          "James Gandolfini is simply one of the greatest actors to ever appear on screen. The finale still divides people and that is exactly the point.",
+        createdAt: "2024-11-18T20:30:00.000Z",
+      },
+    ],
+    createdAt: new Date().toISOString(),
+    createdBy: "seed",
+  },
+  {
+    id: "15",
+    title: "Mindhunter",
+    description:
+      "In the late 1970s, two FBI agents pioneer the science of criminal profiling by interviewing imprisoned serial killers to understand and catch active ones.",
+    genre: "Crime/Thriller",
+    year: 2017,
+    imageUrl: "https://image.tmdb.org/t/p/w500/egCBgGzHJVDkJKTGElKGkhFdxJH.jpg",
+    reviews: [
+      {
+        id: "1",
+        title: "Slow burn perfection",
+        author: "holden@example.com",
+        rating: 5,
+        comment:
+          "The interviews with the killers are some of the most gripping scenes ever put to screen. Fincher's direction makes every conversation feel genuinely dangerous.",
+        createdAt: "2024-08-07T21:00:00.000Z",
+      },
+      {
+        id: "2",
+        author: "bill@example.com",
+        rating: 5,
+        comment:
+          "Criminally underrated and heartbreaking that it was cancelled. The BTK scenes in season two are absolutely chilling.",
+        createdAt: "2025-01-14T19:45:00.000Z",
+      },
+    ],
+    createdAt: new Date().toISOString(),
+    createdBy: "seed",
+  },
+  {
+    id: "16",
+    title: "Landman",
+    description:
+      "A fast-talking fixer works to keep a scrappy oil company afloat in the booming and brutal West Texas oil fields, balancing deals, danger, and family.",
+    genre: "Drama",
+    year: 2024,
+    imageUrl: "https://image.tmdb.org/t/p/w500/lWaGFkgEbFB3jCcVwJKS5yJEmap.jpg",
+    reviews: [
+      {
+        id: "1",
+        title: "Surprisingly gripping",
+        author: "tommy@example.com",
+        rating: 4,
+        comment:
+          "Did not expect much but was hooked within the first episode. The lead performance is electric and the Texas setting feels completely authentic.",
+        createdAt: "2025-01-22T20:00:00.000Z",
+      },
+      {
+        id: "2",
+        author: "caitlin@example.com",
+        rating: 4,
+        comment:
+          "Sharp dialogue and a world you rarely see on TV. Gets better with every episode as the stakes keep rising.",
+        createdAt: "2025-03-08T17:30:00.000Z",
+      },
+    ],
+    createdAt: new Date().toISOString(),
+    createdBy: "seed",
+  },
+  {
+    id: "17",
+    title: "Mayor of Kingstown",
+    description:
+      "The McLusky family serves as power brokers in Kingstown, Michigan, where the prison industry dominates and they are the only hope for justice in a broken system.",
+    genre: "Crime/Drama",
+    year: 2021,
+    imageUrl: "https://image.tmdb.org/t/p/w500/tHsPH9EvVRbzn3VmWpjHlVhgAhJ.jpg",
+    reviews: [
+      {
+        id: "1",
+        title: "Dark and uncompromising",
+        author: "mike@example.com",
+        rating: 5,
+        comment:
+          "Jeremy Renner is at his absolute best here. The show does not sugarcoat anything about the prison system and is all the more powerful for it.",
+        createdAt: "2024-09-14T21:15:00.000Z",
+      },
+      {
+        id: "2",
+        author: "iris@example.com",
+        rating: 4,
+        comment:
+          "Brutal and bleak but completely compelling. The world feels real and lived-in in a way few crime dramas manage.",
+        createdAt: "2025-02-03T18:50:00.000Z",
+      },
+    ],
+    createdAt: new Date().toISOString(),
+    createdBy: "seed",
+  },
+  {
+    id: "18",
+    title: "Animal Kingdom",
+    description:
+      "A teenager moves in with his estranged relatives after his mother's death, only to discover the Cody family is a dangerous crime family run by a cunning matriarch.",
+    genre: "Crime/Drama",
+    year: 2016,
+    imageUrl: "https://image.tmdb.org/t/p/w500/qQ3sU5mTGSPj5HMuTXMKqSbFgJQ.jpg",
+    reviews: [
+      {
+        id: "1",
+        title: "Hidden gem of crime TV",
+        author: "smurf@example.com",
+        rating: 5,
+        comment:
+          "Ellen Barkin is absolutely terrifying as Smurf. The family dynamic is completely unique and the show gets darker and bolder with every season.",
+        createdAt: "2024-07-19T20:00:00.000Z",
+      },
+      {
+        id: "2",
+        author: "pope@example.com",
+        rating: 4,
+        comment:
+          "Slept on by most people but it is genuinely excellent. The tension within the family is more gripping than most of the heists themselves.",
+        createdAt: "2024-12-09T16:20:00.000Z",
+      },
+    ],
+    createdAt: new Date().toISOString(),
+    createdBy: "seed",
+  },
+  {
+    id: "19",
+    title: "Narcos",
+    description:
+      "The true story of the rise and fall of Colombian drug lord Pablo Escobar and the DEA agents who dedicated their lives to bringing him down.",
+    genre: "Crime/Drama",
+    year: 2015,
+    imageUrl: "https://image.tmdb.org/t/p/w500/rTmal9fDbwh5F0waol2hq35U4ah.jpg",
+    reviews: [
+      {
+        id: "1",
+        title: "Stranger than fiction",
+        author: "steve@example.com",
+        rating: 5,
+        comment:
+          "Wagner Moura's portrayal of Escobar is nothing short of mesmerising. The fact that most of it actually happened makes it even more extraordinary.",
+        createdAt: "2024-05-28T19:30:00.000Z",
+      },
+      {
+        id: "2",
+        author: "javier@example.com",
+        rating: 5,
+        comment:
+          "One of the most bingeable shows ever made. The narration pulls you in immediately and the pacing is relentless from start to finish.",
+        createdAt: "2024-10-17T21:00:00.000Z",
+      },
+    ],
+    createdAt: new Date().toISOString(),
+    createdBy: "seed",
+  },
+  {
+    id: "20",
+    title: "Prison Break",
+    description:
+      "A structural engineer gets himself deliberately incarcerated to help break out his brother, who has been wrongly sentenced to death for the murder of the Vice President's brother.",
+    genre: "Crime/Thriller",
+    year: 2005,
+    imageUrl: "https://image.tmdb.org/t/p/w500/5E1BhkCgjLBlqx557Z5yzcN0i94.jpg",
+    reviews: [
+      {
+        id: "1",
+        title: "Season one is flawless television",
+        author: "michael@example.com",
+        rating: 5,
+        comment:
+          "The first season is one of the most tightly plotted and tense things ever made. The tattooed blueprint idea alone is genius.",
+        createdAt: "2024-06-30T20:00:00.000Z",
+      },
+      {
+        id: "2",
+        author: "lincoln@example.com",
+        rating: 4,
+        comment:
+          "Gets wilder as it goes but the ride is so fun you forgive it everything. Wentworth Miller and Dominic Purcell have incredible chemistry.",
+        createdAt: "2025-01-25T17:10:00.000Z",
+      },
+    ],
+    createdAt: new Date().toISOString(),
+    createdBy: "seed",
+  },
 ];
