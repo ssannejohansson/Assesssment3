@@ -2,6 +2,7 @@
   "name": "frontend",
   "type": "module",
   "scripts": {
+    "dev": "npx serve src -l 5500",
     "test": "vitest run"
   },
   "devDependencies": {

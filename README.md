@@ -1,6 +1,6 @@
-# Spoiler Room - TV Show Review API
+# Review Room - TV Show Review API
 
-Spoiler Room is a TV show review API and frontend built for a testing and authentication assignment. The project focuses on clean route design, Firebase authentication, unit tests, integration tests, and a simple CI pipeline.
+Review Room is a TV show review API and frontend built for a testing and authentication assignment. The project focuses on clean route design, Firebase authentication, unit tests, integration tests, and a simple CI pipeline.
 
 ## Overview
 
@@ -10,7 +10,7 @@ The API exposes these routes:
 
 - `GET /shows` - public
 - `GET /shows/:id` - public
-- `GET /shows/profile` - protected
+- `GET /profile` - protected
 - `POST /shows` - protected
 - `POST /shows/:id/reviews` - protected
 
