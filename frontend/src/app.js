@@ -16,51 +16,54 @@ import {
     isFormVisible,
     renderShowList,
     renderError,
-    renderReviewCount
+    renderReviewCount,
+    renderStars,
+    renderReviewCard
 } from "./ui.js";
 
 /* ----------------------
-FIREBASE SETUP 
+FIREBASE SETUP
 ---------------------- */
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 /* ----------------------
-CONSTANTS 
+CONSTANTS
 ---------------------- */
 
 const API = "http://localhost:3000";
 
 /* ----------------------
-DOM ELEMENTS 
+DOM ELEMENTS
 ---------------------- */
 
 const viewLogin = document.getElementById("login-view");
 const viewHome = document.getElementById("home-view");
 const viewDetail = document.getElementById("view-detail");
+const viewWriteReview = document.getElementById("write-review-view");
 const navbar = document.getElementById("navbar");
 const navUser = document.getElementById("nav-user");
 const loginError = document.getElementById("login-error");
 const showList = document.getElementById("shows-list");
 const showError = document.getElementById("shows-error");
 const addShowSection = document.getElementById("add-show-section");
-const addReviewSection = document.getElementById("add-review-section");
 
 /* ----------------------
-SHOW / HIDE VIEWS 
+SHOW / HIDE VIEWS
 ---------------------- */
 
 const showView = (view) => {
     viewLogin.classList.add("hidden");
     viewHome.classList.add("hidden");
     viewDetail.classList.add("hidden");
+    viewWriteReview.classList.add("hidden");
 
     view.classList.remove("hidden");
 };
 
 /* ----------------------
-AUTH STATE 
+AUTH STATE
 ---------------------- */
 
 onAuthStateChanged(auth, async (user) => {
@@ -69,11 +72,10 @@ onAuthStateChanged(auth, async (user) => {
     if (user) {
         navbar.classList.remove("hidden");
         addShowSection.classList.toggle("hidden", !isFormVisible(user));
-        addReviewSection.classList.toggle("hidden", !isFormVisible(user));
         showView(viewHome);
         await loadShows();
     } else {
-        navbar.classList.add("hidden"); 
+        navbar.classList.add("hidden");
         showView(viewLogin);
     }
 });
@@ -117,7 +119,7 @@ document.getElementById("logout-btn").addEventListener("click", async () => {
 });
 
 /* ----------------------
-LOAD SHOWS 
+LOAD SHOWS
 ---------------------- */
 
 const loadShows = async () => {
@@ -132,8 +134,10 @@ const loadShows = async () => {
         const res = await fetch(`${API}/shows`, {
             credentials: "include",
         });
-        
+
         const data = await res.json();
+
+        loading.classList.add("hidden");
 
         // Render the show cards into the DOM
         showList.innerHTML = renderShowList(data);
@@ -142,8 +146,9 @@ const loadShows = async () => {
         document.querySelectorAll(".show-card").forEach((card) => {
             card.addEventListener("click", () => loadShowDetail(card.dataset.id));
         });
-        
+
     } catch (err) {
+        loading.classList.add("hidden");
         // Show error message if fetch fails
         showError.textContent = renderError(err.message);
         showError.classList.remove("hidden");
@@ -189,39 +194,110 @@ LOAD SHOW DETAIL
 const loadShowDetail = async (id) => {
     try {
         // GET /shows/:id is public, no token needed
-        const res = await fetch (`${API}/shows/${id}`, {
+        const res = await fetch(`${API}/shows/${id}`, {
             credentials: "include",
         });
         const show = await res.json();
 
-        // Populate the detail view with show data
-        document.getElementById("detail-title").textContent = show.title;
-        document.getElementById("detail-review-count").textContent = renderReviewCount(show.reviews?.length ?? 0);
-        document.getElementById("review-list").innerHTML = show.reviews
-        ?.map((r) => 
-            `<div class="review-card">
-                <span class="review-rating">★ ${r.rating}/5</span>
-                <p class="review-comment">${r.comment}</p>
-                </div>`)
-        .join("") ?? "";
+        // Calculate average rating from reviews
+        const avgRating = show.reviews?.length > 0
+            ? show.reviews.reduce((sum, r) => sum + r.rating, 0) / show.reviews.length
+            : 0;
 
-        // Store the ID on the review button so addReview knows which show
+        // Populate the detail view with show data
+        document.getElementById("detail-poster").src = show.imageUrl;
+        document.getElementById("detail-poster").alt = show.title;
+        document.getElementById("breadcrumb-title").textContent = show.title;
+        document.getElementById("detail-title").textContent = show.title;
+        document.getElementById("detail-genre").textContent = show.genre;
+        document.getElementById("detail-year").textContent = show.year;
+        document.getElementById("detail-stars").textContent = renderStars(avgRating);
+        document.getElementById("detail-review-count").textContent =
+            `(${renderReviewCount(show.reviews?.length ?? 0)})`;
+        document.getElementById("detail-description").textContent = show.description;
+
+        // Render review cards
+        document.getElementById("review-list").innerHTML =
+            show.reviews?.length > 0
+                ? show.reviews.map(renderReviewCard).join("")
+                : "<p class='no-content'>No reviews yet. Be the first!</p>";
+
+        // Store the show ID and name for the write review view
         document.getElementById("add-review-btn").dataset.id = id;
+        document.getElementById("review-show-name").textContent = show.title;
+
+        // Show write-review-btn only when logged in
+        const writeReviewBtn = document.getElementById("write-review-btn");
+        writeReviewBtn.classList.toggle("hidden", !auth.currentUser);
+
+        // Reset to reviews tab
+        activateTab("reviews");
 
         showView(viewDetail);
     } catch (err) {
         showError.textContent = renderError(err.message);
-        showError.classList.remove("hidden"); 
+        showError.classList.remove("hidden");
     }
 };
 
 /* ----------------------
-BACK BUTTON
+TABS
+---------------------- */
+
+const activateTab = (tabName) => {
+    document.querySelectorAll(".tab").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.tab === tabName);
+    });
+    document.querySelectorAll(".tab-content").forEach((content) => {
+        content.classList.add("hidden");
+    });
+    document.getElementById(`tab-${tabName}`).classList.remove("hidden");
+};
+
+document.querySelectorAll(".tab").forEach((btn) => {
+    btn.addEventListener("click", () => activateTab(btn.dataset.tab));
+});
+
+/* ----------------------
+BACK BUTTON (detail → home)
 ---------------------- */
 
 document.getElementById("back-btn").addEventListener("click", () => {
     // Go back to home without reloading
     showView(viewHome);
+});
+
+/* ----------------------
+WRITE REVIEW VIEW
+---------------------- */
+
+document.getElementById("write-review-btn").addEventListener("click", () => {
+    resetStarPicker();
+    showView(viewWriteReview);
+});
+
+document.getElementById("back-from-review-btn").addEventListener("click", () => {
+    showView(viewDetail);
+});
+
+/* ----------------------
+STAR PICKER
+---------------------- */
+
+const resetStarPicker = () => {
+    document.getElementById("review-rating").value = "";
+    document.querySelectorAll(".star").forEach((s) => s.classList.remove("active"));
+};
+
+document.querySelectorAll(".star").forEach((star) => {
+    star.addEventListener("click", () => {
+        const value = parseInt(star.dataset.value);
+        document.getElementById("review-rating").value = value;
+        // Highlight all stars up to and including the clicked one
+        document.querySelectorAll(".star").forEach((s) => {
+            s.classList.toggle("active", parseInt(s.dataset.value) <= value);
+        });
+    });
 });
 
 /* ----------------------
@@ -232,7 +308,13 @@ document.getElementById("add-review-btn").addEventListener("click", async () => 
     // Grab the show ID stored on the button
     const id = document.getElementById("add-review-btn").dataset.id;
     const rating = document.getElementById("review-rating").value;
+    const title = document.getElementById("review-title-input").value;
     const comment = document.getElementById("review-body").value;
+
+    if (!rating) {
+        alert("Please select a star rating.");
+        return;
+    }
 
     // Grab the current firebase user and their token
     const user = auth.currentUser;
@@ -240,18 +322,20 @@ document.getElementById("add-review-btn").addEventListener("click", async () => 
 
     try {
         // POST /shows/:id/reviews is protected, send bearer token
-        await fetch (`${API}/shows/${id}/reviews`, {
+        await fetch(`${API}/shows/${id}/reviews`, {
             method: "POST",
             credentials: "include",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify({ rating, comment }),
+            body: JSON.stringify({ rating: Number(rating), title, comment }),
         });
 
-        // Clear the textarea and reload the detail view
+        // Clear the form and go back to the detail view
         document.getElementById("review-body").value = "";
+        document.getElementById("review-title-input").value = "";
+        resetStarPicker();
         await loadShowDetail(id);
     } catch (err) {
         showError.textContent = renderError(err.message);

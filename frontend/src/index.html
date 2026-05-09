@@ -81,20 +81,80 @@
     VIEW: SHOW DETAILS
     ----------------------->
     <section id="view-detail" class="hidden">
-      <button id="back-btn">← Back</button>
 
-      <h2 id="detail-title"></h2>
-      <p id="detail-review-count"></p>
+        <div class="breadcrumb">
+            <button type="button" id="back-btn" class="breadcrumb-link">Home</button>
+            <span class="breadcrumb-sep">›</span>
+            <span>Shows</span>
+            <span class="breadcrumb-sep">›</span>
+            <span id="breadcrumb-title"></span>
+        </div>
 
-      <div id="review-list"></div>
+        <div class="detail-hero">
+            <img id="detail-poster" class="detail-poster" alt="">
+            <div class="detail-info">
+                <h2 id="detail-title"></h2>
+                <div class="detail-meta">
+                    <span id="detail-genre"></span>
+                    <span class="meta-dot">·</span>
+                    <span id="detail-year"></span>
+                </div>
+                <div class="detail-rating">
+                    <span id="detail-stars"></span>
+                    <span id="detail-review-count"></span>
+                </div>
+                <p id="detail-description"></p>
+                <button type="button" class="btn-outline">+ Add to My List</button>
+            </div>
+        </div>
 
-      <div id="add-review-section" class="hidden">
-        <h3>Write a Review</h3>
-        <input type="number" id="review-rating" placeholder="Rating (1-5)" min="1" max="5" required>
-        <textarea id="review-body" placeholder="Write your review..."></textarea>
-        <button id="add-review-btn" type="button">Publish Review</button>
-      </div>
+        <div class="tabs">
+            <button type="button" class="tab active" data-tab="reviews">Reviews</button>
+            <button type="button" class="tab" data-tab="trailers">Trailers &amp; More</button>
+        </div>
 
+        <div id="tab-reviews" class="tab-content">
+            <div class="reviews-header">
+                <h3>Reviews</h3>
+                <button type="button" id="write-review-btn" class="hidden">Write a Review</button>
+            </div>
+            <div id="review-list"></div>
+        </div>
+
+        <div id="tab-trailers" class="tab-content hidden">
+            <p class="no-content">No trailers available.</p>
+        </div>
+
+    </section>
+
+    <!----------------------
+    VIEW: WRITE REVIEW
+    ----------------------->
+    <section id="write-review-view" class="hidden">
+        <div class="write-review-back">
+            <button type="button" id="back-from-review-btn">← Back</button>
+        </div>
+        <div class="write-review-card">
+            <h2>Write a Review</h2>
+            <p id="review-show-name"></p>
+
+            <label class="field-label">Your Rating</label>
+            <div class="star-picker" id="star-picker">
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+            </div>
+            <input type="hidden" id="review-rating">
+
+            <label class="field-label">Title <span class="field-optional">(optional)</span></label>
+            <input type="text" id="review-title-input" placeholder="Write a title">
+
+            <label class="field-label">Your Review</label>
+            <textarea id="review-body" placeholder="Write your review here..."></textarea>
+            <button type="button" id="add-review-btn">Publish Review</button>
+        </div>
     </section>
 
     <!----------------------
