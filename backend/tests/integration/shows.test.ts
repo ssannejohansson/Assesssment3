@@ -102,6 +102,25 @@ describe("GET /shows/:id", () => {
   });
 });
 
+describe("GET /shows/profile", () => {
+  it("returns 401 when no token is provided", async () => {
+    const res = await request("GET", "/shows/profile");
+    expect(res.status).toBe(401);
+    expect(res.body).toHaveProperty("error");
+  });
+
+  it("returns user data when a valid token is provided", async () => {
+    const res = await request("GET", "/shows/profile", {
+      token: "valid-test-token",
+    });
+    expect(res.status).toBe(200);
+    expect(res.body).toMatchObject({
+      uid: "user-123",
+      email: "test@example.com",
+    });
+  });
+});
+
 /* ------------------------------------------
   TESTS — PROTECTED ROUTES (401 checks)
 --------------------------------------------- */
