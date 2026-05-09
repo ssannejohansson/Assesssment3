@@ -31,9 +31,19 @@ export function renderShowList(shows) {
     }).join("");
 }
 
+const FIREBASE_ERRORS = {
+    "auth/wrong-password": "Incorrect password. Please try again.",
+    "auth/invalid-credential": "Incorrect email or password. Please try again.",
+    "auth/user-not-found": "No account found with that email.",
+    "auth/invalid-email": "Please enter a valid email address.",
+    "auth/too-many-requests": "Too many failed attempts. Please try again later.",
+    "auth/network-request-failed": "Network error. Check your connection and try again.",
+};
+
 export function renderError(error) {
     if (!error) return "";
-    return `<p class="error">Error: ${error}</p>`;
+    const match = Object.keys(FIREBASE_ERRORS).find((code) => error.includes(code));
+    return match ? FIREBASE_ERRORS[match] : `Something went wrong. Please try again.`;
 }
 
 export function renderReviewCount(count) {

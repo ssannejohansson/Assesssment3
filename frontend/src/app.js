@@ -311,6 +311,9 @@ STAR PICKER
 const resetStarPicker = () => {
     document.getElementById("review-rating").value = "";
     document.querySelectorAll(".star").forEach((s) => s.classList.remove("active"));
+    const ratingError = document.getElementById("rating-error");
+    ratingError.textContent = "";
+    ratingError.classList.add("hidden");
 };
 
 document.querySelectorAll(".star").forEach((star) => {
@@ -335,10 +338,13 @@ document.getElementById("add-review-btn").addEventListener("click", async () => 
     const title = document.getElementById("review-title-input").value;
     const comment = document.getElementById("review-body").value;
 
+    const ratingError = document.getElementById("rating-error");
     if (!rating) {
-        alert("Please select a star rating.");
+        ratingError.textContent = "Please select a star rating.";
+        ratingError.classList.remove("hidden");
         return;
     }
+    ratingError.classList.add("hidden");
 
     // Grab the current firebase user and their token
     const user = auth.currentUser;

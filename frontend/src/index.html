@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spoiler Room</title>
+    <title>Review Room</title>
     <link rel="stylesheet" href="./style.css">
 
     <!-- Google Font import -->
@@ -23,7 +23,7 @@
     NAVBAR
     ----------------------->
     <nav id="navbar" class="hidden">
-        <span class="logo">Spoiler Room</span>
+        <span class="logo">Review Room</span>
         <ul class="nav-links">
             <li><a href="#home-view">Home</a></li>
             <li><a href="#shows-list">Shows</a></li>
@@ -39,7 +39,7 @@
 
     <section id="login-view">
         <div class="login-header">
-            <span class="logo">Spoiler Room</span>
+            <span class="logo">Review Room</span>
         </div>
 
         <div class="login-card">
@@ -136,7 +136,6 @@
                     <span id="detail-review-count"></span>
                 </div>
                 <p id="detail-description"></p>
-                <button type="button" class="btn-outline">+ Add to My List</button>
             </div>
         </div>
 
@@ -179,6 +178,7 @@
                 <span class="star" data-value="5">★</span>
             </div>
             <input type="hidden" id="review-rating">
+            <p id="rating-error" class="error hidden"></p>
 
             <label class="field-label">Title <span class="field-optional">(optional)</span></label>
             <input type="text" id="review-title-input" placeholder="Write a title">
