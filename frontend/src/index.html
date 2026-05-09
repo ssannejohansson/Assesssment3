@@ -23,11 +23,12 @@
     NAVBAR
     ----------------------->
     <nav id="navbar" class="hidden">
-        <span class="logo">Review Room</span>
+        <a id="nav-logo" href="#" class="logo">Review Room</a>
         <ul class="nav-links">
-            <li><a href="#home-view">Home</a></li>
-            <li><a href="#shows-list">Shows</a></li>
+            <li><a id="home-link" href="#">Home</a></li>
+            <li><a id="shows-link" href="#">Shows</a></li>
             <li id="add-show-nav-item" class="hidden"><a id="add-show-link" href="#">Add Show</a></li>
+            <li><a id="profile-link" href="#">Profile</a></li>
         </ul>
         <span id="nav-user"></span>
         <button id="logout-btn">Logout</button>
@@ -191,6 +192,20 @@
             <label class="field-label">Your Review</label>
             <textarea id="review-body" placeholder="Write your review here..."></textarea>
             <button type="button" id="add-review-btn">Publish Review</button>
+        </div>
+    </section>
+
+    <!----------------------
+    VIEW: PROFILE
+    ----------------------->
+    <section id="profile-view" class="hidden">
+        <div class="write-review-back">
+            <button type="button" id="back-from-profile-btn">← Back</button>
+        </div>
+        <div class="profile-card">
+            <div class="profile-avatar" id="profile-avatar"></div>
+            <h2 id="profile-email"></h2>
+            <p class="profile-uid">User ID: <span id="profile-uid"></span></p>
         </div>
     </section>
 
