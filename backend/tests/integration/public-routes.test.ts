@@ -1,7 +1,18 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { createServer } from 'node:http';
 import { once } from 'node:events';
 import { app } from '../../src/app';
+
+vi.mock('../../src/config/firebase.js', () => ({
+  auth: {
+    verifyIdToken: vi.fn(async (token: string) => {
+      if (token === 'valid-test-token') {
+        return { uid: 'user-123', email: 'test@example.com' };
+      }
+      throw new Error('invalid token');
+    }),
+  },
+}));
 
 describe('GET /shows (Public Routes)', () => {
   it('should return 200 and an array of TV shows', async () => {

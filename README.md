@@ -10,7 +10,7 @@ The API exposes these routes:
 
 - `GET /shows` - public
 - `GET /shows/:id` - public
-- `GET /shows/profile` - protected
+- `GET /profile` - protected
 - `POST /shows` - protected
 - `POST /shows/:id/reviews` - protected
 

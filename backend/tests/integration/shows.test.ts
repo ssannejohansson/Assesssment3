@@ -102,15 +102,15 @@ describe("GET /shows/:id", () => {
   });
 });
 
-describe("GET /shows/profile", () => {
+describe("GET /profile", () => {
   it("returns 401 when no token is provided", async () => {
-    const res = await request("GET", "/shows/profile");
+    const res = await request("GET", "/profile");
     expect(res.status).toBe(401);
     expect(res.body).toHaveProperty("error");
   });
 
   it("returns user data when a valid token is provided", async () => {
-    const res = await request("GET", "/shows/profile", {
+    const res = await request("GET", "/profile", {
       token: "valid-test-token",
     });
     expect(res.status).toBe(200);
