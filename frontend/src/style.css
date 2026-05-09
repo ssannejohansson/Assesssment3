@@ -257,15 +257,25 @@ VIEW: DETAIL
 }
 
 /* ------------------------------------------
-REVIEWS LIST
+REVIEWS CARDS
 --------------------------------------------- */
-#review-list p {
+.review-card {
     background-color: var(--surface);
     padding: 16px;
     border-radius: var(--radius);
     margin-bottom: 12px;
+}
+
+.review-rating {
+    color: var(--red);
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.review-comment {
     color: var(--text-muted);
     line-height: 1.6;
+    margin-top: 8px;
 }
 
 /* ------------------------------------------

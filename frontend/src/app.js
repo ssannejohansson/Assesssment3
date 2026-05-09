@@ -82,7 +82,9 @@ onAuthStateChanged(auth, async (user) => {
 LOGIN
 ---------------------- */
 
-document.getElementById("login-btn").addEventListener("click", async () => {
+document.getElementById("login-form").addEventListener("submit", async (e) => {
+    e.preventDefault(); // Stops the page from relaoding on form submit
+
     // Grab values from input fields.
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
@@ -188,7 +190,11 @@ const loadShowDetail = async (id) => {
         document.getElementById("detail-title").textContent = show.title;
         document.getElementById("detail-review-count").textContent = renderReviewCount(show.reviews?.length ?? 0);
         document.getElementById("review-list").innerHTML = show.reviews
-        ?.map((r) => `<p>${r.body}</p>`)
+        ?.map((r) => 
+            `<div class="review-card">
+                <span class="review-rating">★ ${r.rating}/5</span>
+                <p class="review-comment">${r.comment}</p>
+                </div>`)
         .join("") ?? "";
 
         // Store the ID on the review button so addReview knows which show
@@ -217,7 +223,8 @@ ADD REVIEW
 document.getElementById("add-review-btn").addEventListener("click", async () => {
     // Grab the show ID stored on the button
     const id = document.getElementById("add-review-btn").dataset.id;
-    const body = document.getElementById("review-body").value;
+    const rating = document.getElementById("review-rating").value;
+    const comment = document.getElementById("review-body").value;
 
     // Grab the current firebase user and their token
     const user = auth.currentUser;
@@ -232,7 +239,7 @@ document.getElementById("add-review-btn").addEventListener("click", async () => 
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify({ body }),
+            body: JSON.stringify({ rating, comment }),
         });
 
         // Clear the textarea and reload the detail view
