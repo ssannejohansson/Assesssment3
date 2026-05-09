@@ -42,12 +42,13 @@ const viewLogin = document.getElementById("login-view");
 const viewHome = document.getElementById("home-view");
 const viewDetail = document.getElementById("view-detail");
 const viewWriteReview = document.getElementById("write-review-view");
+const viewAddShow = document.getElementById("add-show-view");
 const navbar = document.getElementById("navbar");
 const navUser = document.getElementById("nav-user");
 const loginError = document.getElementById("login-error");
 const showList = document.getElementById("shows-list");
 const showError = document.getElementById("shows-error");
-const addShowSection = document.getElementById("add-show-section");
+const addShowNavItem = document.getElementById("add-show-nav-item");
 
 /* ----------------------
 SHOW / HIDE VIEWS
@@ -58,6 +59,7 @@ const showView = (view) => {
     viewHome.classList.add("hidden");
     viewDetail.classList.add("hidden");
     viewWriteReview.classList.add("hidden");
+    viewAddShow.classList.add("hidden");
 
     view.classList.remove("hidden");
 };
@@ -71,7 +73,7 @@ onAuthStateChanged(auth, async (user) => {
 
     if (user) {
         navbar.classList.remove("hidden");
-        addShowSection.classList.toggle("hidden", !isFormVisible(user));
+        addShowNavItem.classList.toggle("hidden", !isFormVisible(user));
         showView(viewHome);
         await loadShows();
     } else {
@@ -156,7 +158,20 @@ const loadShows = async () => {
 };
 
 /* ----------------------
-ADD SHOW
+ADD SHOW - NAVIGATION
+---------------------- */
+
+document.getElementById("add-show-link").addEventListener("click", (e) => {
+    e.preventDefault();
+    showView(viewAddShow);
+});
+
+document.getElementById("back-from-add-show-btn").addEventListener("click", () => {
+    showView(viewHome);
+});
+
+/* ----------------------
+ADD SHOW - SUBMIT
 ---------------------- */
 
 document.getElementById("add-show-btn").addEventListener("click", async () => {
@@ -165,6 +180,10 @@ document.getElementById("add-show-btn").addEventListener("click", async () => {
     const token = await user.getIdToken();
 
     const title = document.getElementById("show-title").value;
+    const genre = document.getElementById("show-genre").value;
+    const year = document.getElementById("show-year").value;
+    const imageUrl = document.getElementById("show-image-url").value;
+    const description = document.getElementById("show-description").value;
 
     try {
         // POST /shows is protected, send bearer token in header
@@ -175,11 +194,16 @@ document.getElementById("add-show-btn").addEventListener("click", async () => {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`, // required for protected routes.
             },
-            body: JSON.stringify({ title }),
+            body: JSON.stringify({ title, genre, year: Number(year), imageUrl, description }),
         });
 
-        // Clear the input and reload the list
+        // Clear the form and go back to home
         document.getElementById("show-title").value = "";
+        document.getElementById("show-genre").value = "";
+        document.getElementById("show-year").value = "";
+        document.getElementById("show-image-url").value = "";
+        document.getElementById("show-description").value = "";
+        showView(viewHome);
         await loadShows();
     } catch (err) {
         showError.textContent = renderError(err.message);

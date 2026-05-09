@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spoiler Room</title>
     <link rel="stylesheet" href="./style.css">
+
+    <!-- Google Font import -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="manifest" href="site.webmanifest">
 </head>
 
 <body>
@@ -16,7 +27,7 @@
         <ul class="nav-links">
             <li><a href="#home-view">Home</a></li>
             <li><a href="#shows-list">Shows</a></li>
-            <li><a href="#add-show-section">Add Show</a></li>
+            <li id="add-show-nav-item" class="hidden"><a id="add-show-link" href="#">Add Show</a></li>
         </ul>
         <span id="nav-user"></span>
         <button id="logout-btn">Logout</button>
@@ -66,15 +77,36 @@
         <div id="shows-list"></div>
         <p id="shows-error" class="error hidden"></p>
 
-        <div id="add-show-section" class="hidden">
-            <h3>Add New Show</h3>
-            <form id="add-show-form">
-                <input type="text" id="show-title" placeholder="Show Title" required>
-                <textarea id="show-description" placeholder="Show Description"></textarea>
-                <button id="add-show-btn" type="submit">Add Show</button>
-            </form>
-        </div>
 
+    </section>
+
+    <!----------------------
+    VIEW: ADD SHOW
+    ----------------------->
+    <section id="add-show-view" class="hidden">
+        <div class="write-review-back">
+            <button type="button" id="back-from-add-show-btn">← Back</button>
+        </div>
+        <div class="write-review-card">
+            <h2>Add New Show</h2>
+
+            <label class="field-label">Title</label>
+            <input type="text" id="show-title" placeholder="e.g. Breaking Bad" required>
+
+            <label class="field-label">Genre</label>
+            <input type="text" id="show-genre" placeholder="e.g. Drama" required>
+
+            <label class="field-label">Year</label>
+            <input type="number" id="show-year" placeholder="e.g. 2008" min="1900" max="2099" required>
+
+            <label class="field-label">Image URL</label>
+            <input type="url" id="show-image-url" placeholder="https://image.tmdb.org/..." required>
+
+            <label class="field-label">Description</label>
+            <textarea id="show-description" placeholder="What is the show about?" required></textarea>
+
+            <button type="button" id="add-show-btn">Add Show</button>
+        </div>
     </section>
 
     <!----------------------
