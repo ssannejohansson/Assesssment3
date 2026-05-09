@@ -11,9 +11,13 @@
     <!----------------------
     NAVBAR
     ----------------------->
-  <!-- <nav id="navbar" class="hidden"> COMMENT OUT WHEN DONE STYLING --> 
- <nav id="navbar">
+    <nav id="navbar" class="hidden">
         <span class="logo">Spoiler Room</span>
+        <ul class="nav-links">
+            <li><a href="#home-view">Home</a></li>
+            <li><a href="#shows-list">Shows</a></li>
+            <li><a href="#add-show-section">Add Show</a></li>
+        </ul>
         <span id="nav-user"></span>
         <button id="logout-btn">Logout</button>
     </nav>
@@ -23,16 +27,21 @@
     ----------------------->
 
     <section id="login-view">
-        <h1>Login</h1>
+        <div class="login-header">
+            <span class="logo">Spoiler Room</span>
+        </div>
 
-        <form id="login-form">
-            <input type="email" id="email" placeholder="Email" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <button id="login-btn" type="submit">Login</button>
-        </form>
+        <div class="login-card">
+            <h1>Log in</h1>
 
-        <p id="login-error" class="error hidden"></p>
+            <form id="login-form">
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button id="login-btn" type="submit">Log in</button>
+            </form>
 
+            <p id="login-error" class="error hidden"></p>
+        </div>
     </section>
 
     <!----------------------
@@ -40,10 +49,20 @@
     ----------------------->
 
     <section id="home-view" class="hidden">
-        <h2>Popular Shows</h2>
+
+        <div id="hero">
+            <div class="hero-content">
+                <h1>Welcome back!</h1>
+                <p>Discover, review and share your favorite shows.</p>
+                <button id="explore-btn" type="button">Explore Shows</button>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h2>Popular Shows</h2>
+        </div>
 
         <p id="loading-message" class="hidden">Loading shows...</p>
-
         <div id="shows-list"></div>
         <p id="shows-error" class="error hidden"></p>
 
@@ -57,6 +76,7 @@
         </div>
 
     </section>
+
     <!----------------------
     VIEW: SHOW DETAILS
     ----------------------->
@@ -81,6 +101,6 @@
     SCRIPTS
     ----------------------->
     <script type="module" src="app.js"></script>
-    
+
 </body>
 </html>

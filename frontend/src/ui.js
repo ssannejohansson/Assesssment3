@@ -15,7 +15,7 @@ export function renderShowList(shows) {
     if (shows.length === 0) return "<p>No shows found</p>";
     return shows.map((show) => `
     <div class="show-card" data-id="${show.id}">
-    <div class = "show-card__img"></div>
+      <img class="show-card__img" src="${show.imageUrl}" alt="${show.title}">
       <p>${show.title}</p>
     </div>
   `).join("");

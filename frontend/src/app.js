@@ -101,6 +101,14 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
 });
 
 /* ----------------------
+EXPLORE BUTTON
+---------------------- */
+
+document.getElementById("explore-btn").addEventListener("click", () => {
+    document.getElementById("shows-list").scrollIntoView({ behavior: "smooth" });
+});
+
+/* ----------------------
 LOGOUT
 ---------------------- */
 
