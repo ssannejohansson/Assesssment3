@@ -2,7 +2,7 @@ import { readFileSync, writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
-const API_KEY = "d6f447aba854dd613c1a599728b544a4";
+const API_KEY = process.env.TMDB_API_KEY;
 const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/w500";
 
 const shows = [

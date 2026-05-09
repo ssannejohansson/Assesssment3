@@ -100,10 +100,17 @@ npm test
 
 ### Screenshots
 
-Add these before submission:
+**Screenshot 1 — Passing tests locally**
 
-- Screenshot of passing tests run locally
-- Screenshot of the passing GitHub Actions pipeline
+Run `npm test` in the `backend/` folder, then take a screenshot of the terminal output showing all tests passing. Paste it here:
+
+![Passing tests locally](docs/screenshot-tests-local.png)
+
+**Screenshot 2 — Passing GitHub Actions pipeline**
+
+Go to your GitHub repo → Actions tab → click the latest run → take a screenshot of the green checkmark summary. Paste it here:
+
+![Passing GitHub Actions pipeline](docs/screenshot-pipeline.png)
 
 ## Authentication
 
@@ -126,6 +133,7 @@ The project follows the security checklist from the assignment:
 - CORS is restricted to the frontend origin instead of using `*`. This prevents random websites from making cross-origin requests to the API during development.
 - Tokens are not stored in `localStorage`. The app relies on Firebase Auth state and requests fresh ID tokens when needed, which avoids long-lived browser storage for auth tokens.
 - Authenticated requests use the `Authorization: Bearer <token>` header so the backend can verify the caller before allowing protected actions.
+- All frontend fetch calls include `credentials: "include"`, which is the equivalent of `withCredentials: true`. This ensures cookies and credentials are sent with cross-origin requests, which is required for CORS to work correctly with authenticated sessions.
 - The Firebase service account private values are kept out of source control and handled through environment variables or GitHub Secrets.
 
 Why these choices matter:
@@ -147,6 +155,14 @@ What was challenging:
 - Route ordering in Express matters. Static routes like `/profile` must be placed carefully so they are not shadowed by dynamic routes like `/:id`.
 - Keeping the frontend and backend auth flow aligned required consistent handling of Firebase state and Bearer tokens.
 - The biggest tradeoff was balancing simplicity for the assignment with enough structure to keep the code readable and testable.
+
+What would I do differently:
+
+- I would add input validation on the backend (e.g. reject reviews with a rating outside 1–5, or shows missing required fields) to make the API more robust.
+- I would extract the in-memory data store behind a proper repository interface so it could be swapped for a real database without touching the controllers.
+- I would add more granular error handling on the frontend so each view shows its own error message rather than sharing a single error element.
+
+This is a solo project.
 
 ## Project Status
 
