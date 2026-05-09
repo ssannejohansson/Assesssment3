@@ -132,15 +132,20 @@ describe("POST /shows — authentication", () => {
     expect(res.status).toBe(401);
   });
 
-  it("returns 201 and the new show when a valid token is provided", async () => {
+it("returns 201 and the new show when a valid token is provided", async () => {
     const res = await request("POST", "/shows", {
       token: "valid-test-token",
-      body: { title: "Severance", genre: "Sci-Fi" },
+      body: {
+        title: "Succession",
+        description: "A media dynasty's dysfunctional family fights for control.",
+        genre: "Drama",
+        year: 2018,
+        imageUrl: "https://image.tmdb.org/t/p/w500/7HW47XbkNQ5fiwQFYGWdw9gs144.jpg",
+      },
     });
     expect(res.status).toBe(201);
-    expect(res.body).toHaveProperty("title", "Severance");
+    expect(res.body).toHaveProperty("title", "Succession");
   });
-});
 
 describe("POST /shows/:id/reviews — authentication", () => {
   it("returns 401 when no token is provided", async () => {
