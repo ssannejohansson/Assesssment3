@@ -43,6 +43,7 @@ const viewHome = document.getElementById("home-view");
 const viewDetail = document.getElementById("view-detail");
 const viewWriteReview = document.getElementById("write-review-view");
 const viewAddShow = document.getElementById("add-show-view");
+const viewProfile = document.getElementById("profile-view");
 const navbar = document.getElementById("navbar");
 const navUser = document.getElementById("nav-user");
 const loginError = document.getElementById("login-error");
@@ -60,6 +61,7 @@ const showView = (view) => {
     viewDetail.classList.add("hidden");
     viewWriteReview.classList.add("hidden");
     viewAddShow.classList.add("hidden");
+    viewProfile.classList.add("hidden");
 
     view.classList.remove("hidden");
 };
@@ -105,19 +107,35 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
 });
 
 /* ----------------------
-EXPLORE BUTTON
----------------------- */
-
-document.getElementById("explore-btn").addEventListener("click", () => {
-    document.getElementById("shows-list").scrollIntoView({ behavior: "smooth" });
-});
-
-/* ----------------------
 LOGOUT
 ---------------------- */
 
 document.getElementById("logout-btn").addEventListener("click", async () => {
     await signOut(auth);
+});
+
+/* ----------------------
+HOME NAVIGATION
+---------------------- */
+
+document.getElementById("home-link").addEventListener("click", (e) => {
+    e.preventDefault();
+    showView(viewHome);
+});
+
+document.getElementById("nav-logo").addEventListener("click", (e) => {
+    e.preventDefault();
+    showView(viewHome);
+});
+
+document.getElementById("shows-link").addEventListener("click", (e) => {
+    e.preventDefault();
+    showView(viewHome);
+    document.getElementById("shows-list").scrollIntoView({ behavior: "smooth" });
+});
+
+document.getElementById("explore-btn").addEventListener("click", () => {
+    document.getElementById("shows-list").scrollIntoView({ behavior: "smooth" });
 });
 
 /* ----------------------
@@ -156,60 +174,6 @@ const loadShows = async () => {
         showError.classList.remove("hidden");
     }
 };
-
-/* ----------------------
-ADD SHOW - NAVIGATION
----------------------- */
-
-document.getElementById("add-show-link").addEventListener("click", (e) => {
-    e.preventDefault();
-    showView(viewAddShow);
-});
-
-document.getElementById("back-from-add-show-btn").addEventListener("click", () => {
-    showView(viewHome);
-});
-
-/* ----------------------
-ADD SHOW - SUBMIT
----------------------- */
-
-document.getElementById("add-show-btn").addEventListener("click", async () => {
-    // Grab the current firebase user and their token
-    const user = auth.currentUser;
-    const token = await user.getIdToken();
-
-    const title = document.getElementById("show-title").value;
-    const genre = document.getElementById("show-genre").value;
-    const year = document.getElementById("show-year").value;
-    const imageUrl = document.getElementById("show-image-url").value;
-    const description = document.getElementById("show-description").value;
-
-    try {
-        // POST /shows is protected, send bearer token in header
-        await fetch(`${API}/shows`, {
-            method: "POST",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`, // required for protected routes.
-            },
-            body: JSON.stringify({ title, genre, year: Number(year), imageUrl, description }),
-        });
-
-        // Clear the form and go back to home
-        document.getElementById("show-title").value = "";
-        document.getElementById("show-genre").value = "";
-        document.getElementById("show-year").value = "";
-        document.getElementById("show-image-url").value = "";
-        document.getElementById("show-description").value = "";
-        showView(viewHome);
-        await loadShows();
-    } catch (err) {
-        showError.textContent = renderError(err.message);
-        showError.classList.remove("hidden");
-    }
-});
 
 /* ----------------------
 LOAD SHOW DETAIL
@@ -282,17 +246,13 @@ document.querySelectorAll(".tab").forEach((btn) => {
     btn.addEventListener("click", () => activateTab(btn.dataset.tab));
 });
 
-/* ----------------------
-BACK BUTTON (detail → home)
----------------------- */
-
 document.getElementById("back-btn").addEventListener("click", () => {
     // Go back to home without reloading
     showView(viewHome);
 });
 
 /* ----------------------
-WRITE REVIEW VIEW
+WRITE REVIEW
 ---------------------- */
 
 document.getElementById("write-review-btn").addEventListener("click", () => {
@@ -303,10 +263,6 @@ document.getElementById("write-review-btn").addEventListener("click", () => {
 document.getElementById("back-from-review-btn").addEventListener("click", () => {
     showView(viewDetail);
 });
-
-/* ----------------------
-STAR PICKER
----------------------- */
 
 const resetStarPicker = () => {
     document.getElementById("review-rating").value = "";
@@ -326,10 +282,6 @@ document.querySelectorAll(".star").forEach((star) => {
         });
     });
 });
-
-/* ----------------------
-ADD REVIEW
----------------------- */
 
 document.getElementById("add-review-btn").addEventListener("click", async () => {
     // Grab the show ID stored on the button
@@ -371,4 +323,88 @@ document.getElementById("add-review-btn").addEventListener("click", async () => 
         showError.textContent = renderError(err.message);
         showError.classList.remove("hidden");
     }
+});
+
+/* ----------------------
+ADD SHOW
+---------------------- */
+
+document.getElementById("add-show-link").addEventListener("click", (e) => {
+    e.preventDefault();
+    showView(viewAddShow);
+});
+
+document.getElementById("back-from-add-show-btn").addEventListener("click", () => {
+    showView(viewHome);
+});
+
+document.getElementById("add-show-btn").addEventListener("click", async () => {
+    // Grab the current firebase user and their token
+    const user = auth.currentUser;
+    const token = await user.getIdToken();
+
+    const title = document.getElementById("show-title").value;
+    const genre = document.getElementById("show-genre").value;
+    const year = document.getElementById("show-year").value;
+    const imageUrl = document.getElementById("show-image-url").value;
+    const description = document.getElementById("show-description").value;
+
+    try {
+        // POST /shows is protected, send bearer token in header
+        await fetch(`${API}/shows`, {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`, // required for protected routes.
+            },
+            body: JSON.stringify({ title, genre, year: Number(year), imageUrl, description }),
+        });
+
+        // Clear the form and go back to home
+        document.getElementById("show-title").value = "";
+        document.getElementById("show-genre").value = "";
+        document.getElementById("show-year").value = "";
+        document.getElementById("show-image-url").value = "";
+        document.getElementById("show-description").value = "";
+        showView(viewHome);
+        await loadShows();
+    } catch (err) {
+        showError.textContent = renderError(err.message);
+        showError.classList.remove("hidden");
+    }
+});
+
+/* ----------------------
+PROFILE
+---------------------- */
+
+document.getElementById("profile-link").addEventListener("click", async (e) => {
+    e.preventDefault();
+    // Grab the current firebase user and their token
+    const user = auth.currentUser;
+    const token = await user.getIdToken();
+
+    try {
+        // GET /profile is protected, send bearer token
+        const res = await fetch(`${API}/profile`, {
+            credentials: "include",
+            headers: { Authorization: `Bearer ${token}` },
+        });
+        const data = await res.json();
+
+        document.getElementById("profile-avatar").textContent =
+            data.email.charAt(0).toUpperCase();
+        document.getElementById("profile-email").textContent = data.email;
+        document.getElementById("profile-uid").textContent = data.uid;
+
+        showView(viewProfile);
+    } catch (err) {
+        showError.textContent = renderError(err.message);
+        showError.classList.remove("hidden");
+    }
+});
+
+document.getElementById("back-from-profile-btn").addEventListener("click", () => {
+    showView(viewHome);
 });
