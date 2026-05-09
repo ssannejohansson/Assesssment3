@@ -1,7 +1,23 @@
-import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
-import { firebaseConfig } from "./firebase-config.js";
-import { renderHeader, isFormVisible, renderShowList, renderError, renderReviewCount } from "./ui.js";
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
+import {
+    firebaseConfig
+} from "./firebase-config.js";
+import {
+    renderHeader,
+    isFormVisible,
+    renderShowList,
+    renderError,
+    renderReviewCount
+} from "./ui.js";
 
 /* ----------------------
 FIREBASE SETUP 
@@ -26,8 +42,8 @@ const viewDetail = document.getElementById("view-detail");
 const navbar = document.getElementById("navbar");
 const navUser = document.getElementById("nav-user");
 const loginError = document.getElementById("login-error");
-const showList = document.getElementById("show-list");
-const showError = document.getElementById("show-error");
+const showList = document.getElementById("shows-list");
+const showError = document.getElementById("shows-error");
 const addShowSection = document.getElementById("add-show-section");
 const addReviewSection = document.getElementById("add-review-section");
 
@@ -57,7 +73,7 @@ onAuthStateChanged(auth, async (user) => {
         showView(viewHome);
         await loadShows();
     } else {
-        navbar.classList.add("hidden");
+        navbar.classList.add("hidden"); 
         showView(viewLogin);
     }
 });
@@ -95,6 +111,12 @@ LOAD SHOWS
 ---------------------- */
 
 const loadShows = async () => {
+    const loading = document.getElementById("loading-message");
+
+    // Show loading message while fetching
+    loading.classList.remove("hidden");
+    showList.innerHTML = "";
+
     try {
         // GET /shows is public - no token needed
         const res = await fetch(`${API}/shows`, {
@@ -170,7 +192,7 @@ const loadShowDetail = async (id) => {
         .join("") ?? "";
 
         // Store the ID on the review button so addReview knows which show
-        document.getElementById("add-review-btn".dataset.id = id);
+        document.getElementById("add-review-btn").dataset.id = id;
 
         showView(viewDetail);
     } catch (err) {
@@ -195,7 +217,7 @@ ADD REVIEW
 document.getElementById("add-review-btn").addEventListener("click", async () => {
     // Grab the show ID stored on the button
     const id = document.getElementById("add-review-btn").dataset.id;
-    const body = document.getElementById("review.body").value;
+    const body = document.getElementById("review-body").value;
 
     // Grab the current firebase user and their token
     const user = auth.currentUser;
@@ -203,7 +225,7 @@ document.getElementById("add-review-btn").addEventListener("click", async () => 
 
     try {
         // POST /shows/:id/reviews is protected, send bearer token
-        await fetch (`{API}/shows/${id}/reviews`, {
+        await fetch (`${API}/shows/${id}/reviews`, {
             method: "POST",
             credentials: "include",
             headers: {

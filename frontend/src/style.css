@@ -1,0 +1,285 @@
+/* ------------------------------------------
+CSS VARIABLES
+--------------------------------------------- */
+:root {
+      --bg: #141414;
+      --surface: #1f1f1f;
+      --red: #e50914;
+      --red-hover: #b20710;
+      --text: #ffffff;
+      --text-muted: #b3b3b3;
+      --input-bg: #333333;
+      --radius: 4px;
+      }
+
+
+/* ------------------------------------------
+RESET & BASE
+--------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: "Helvetica Neue", sans-serif;
+    min-height: 100vh;
+}
+
+/* TEMP - remove when done styling */
+section {
+    min-height: 0 !important;
+}
+
+/* ------------------------------------------
+UTILITY
+--------------------------------------------- */
+.hidden {
+    display: none !important;
+}
+
+.error {
+    color: var(--red);
+    font-size: 0.875rem;
+    margin-top: 8px;
+}
+
+/* ------------------------------------------
+LOADING
+--------------------------------------------- */
+#loading-message {
+    color: var(--text-muted);
+    padding: 40px 48px;
+    font-size: 0.9rem;
+}
+
+/* ------------------------------------------
+NAVBAR
+--------------------------------------------- */
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 16px 48px;
+}
+
+.logo {
+    color: var(--red);
+    font-size: 1.5rem; 
+    font-weight: 700;
+    letter-spacing: 2px; 
+    margin-right: auto;
+}
+
+#nav-user {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+#logout-btn {
+    background: none; 
+    border: 1px solid var(--text-muted);
+    color: var(--text-muted);
+    padding: 6px 16px;
+    font-size: 0.85rem;
+    font-weight: 400;
+}
+
+#logout-btn:hover {
+    border-color: var(--text);
+    color: var(--text);
+    background: none;
+}
+
+/* ------------------------------------------
+BUTTONS
+--------------------------------------------- */
+button {
+    background-color: var(--red);
+    color: var(--text);
+    border: none;
+    border-radius: var(--radius);
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s; 
+}
+
+button:hover {
+    background-color: var(--red-hover);
+}
+
+/* ------------------------------------------
+INPUTS
+--------------------------------------------- */
+input, textarea {
+    background-color: var(--input-bg);
+    color: var(--text);
+    border: none;
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    font-size: 1rem;
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+input::placeholder, textarea::placeholder {
+    color: var(--muted);
+}
+
+textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+/* ------------------------------------------
+VIEW: LOGIN
+--------------------------------------------- */
+#login-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    var(--bg);
+}
+
+#login-view h1 {
+    font-size: 2rem;
+    margin-bottom: 24px;
+}
+
+#login-view input, #login-view button {
+    width: 320px; 
+    display: block;
+}
+
+/* ------------------------------------------
+VIEW: HOME
+--------------------------------------------- */
+#home-view {
+    padding: 40px 48px;
+}
+
+#home-view h2 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+}
+
+/* ------------------------------------------
+SHOW GRID
+--------------------------------------------- */
+#shows-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 8px;
+    margin-bottom: 40px;
+}
+
+.show-card {
+    background-color: var(--surface);
+    border-radius: var(--radius);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.show-card:hover {
+    transform: scale(1.05);
+}
+
+.show-card__img {
+    width: 100%;
+    aspect-ratio: 2/3;
+    background-color: #333;
+}
+
+.show-card p {
+    padding: 8px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* ------------------------------------------
+ADD SHOW FORM
+--------------------------------------------- */
+#add-show-section {
+    background-color: var(--surface);
+    padding: 24px;
+    border-radius: var(--radius);
+    max-width: 400px;
+    margin-top: 24px;
+}
+
+#add-show-section h3 {
+    margin-bottom: 16px;
+    font-size: 1.1rem;
+}
+
+/* ------------------------------------------
+VIEW: DETAIL
+--------------------------------------------- */
+#view-detail {
+    padding: 40px 48px;
+    max-width: 800px;
+}
+
+#back-btn {
+    background: none;
+    color: var(--text-muted);
+    padding: 0;
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+}
+
+#back-btn:hover {
+    background: none;
+    color: var(--text-muted);
+}
+
+#detail-title {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+#detail-review-count {
+    color: var(--text-muted);
+    margin-bottom: 24px; 
+}
+
+/* ------------------------------------------
+REVIEWS LIST
+--------------------------------------------- */
+#review-list p {
+    background-color: var(--surface);
+    padding: 16px;
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* ------------------------------------------
+ADD REVIEW FORM
+--------------------------------------------- */
+#add-review-section {
+    background-color: var(--surface);
+    padding: 24px;
+    border-radius: var(--radius);
+    margin-top: 32px;
+    max-width: 400px;
+}
+
+#add-review-section h3 {
+    margin-bottom: 16px;
+    font-size: 1.1rem;
+}
