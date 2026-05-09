@@ -146,6 +146,7 @@ it("returns 201 and the new show when a valid token is provided", async () => {
     expect(res.status).toBe(201);
     expect(res.body).toHaveProperty("title", "Succession");
   });
+});
 
 describe("POST /shows/:id/reviews — authentication", () => {
   it("returns 401 when no token is provided", async () => {
