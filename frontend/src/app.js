@@ -47,36 +47,6 @@ const showError = document.getElementById("shows-error");
 const addShowSection = document.getElementById("add-show-section");
 const addReviewSection = document.getElementById("add-review-section");
 
-
-// TEMP - remove when done styling
-const fakeShows = [{
-        id: "1",
-        title: "Breaking Bad"
-    },
-    {
-        id: "2",
-        title: "Severance"
-    },
-    {
-        id: "3",
-        title: "The Bear"
-    },
-    {
-        id: "4",
-        title: "Succession"
-    },
-    {
-        id: "5",
-        title: "The Last of Us"
-    },
-    {
-        id: "6",
-        title: "Euphoria"
-    },
-];
-
-showList.innerHTML = renderShowList(fakeShows);
-
 /* ----------------------
 SHOW / HIDE VIEWS 
 ---------------------- */
@@ -103,9 +73,8 @@ onAuthStateChanged(auth, async (user) => {
         showView(viewHome);
         await loadShows();
     } else {
-        // navbar.classList.add("hidden"); COMMENT OUT LATER
-        showView(viewHome); // hardcoded to be able to style, remove later
-        // showView(viewLogin);
+        navbar.classList.add("hidden"); 
+        showView(viewLogin);
     }
 });
 
