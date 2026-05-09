@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import {showsRouter} from "./routes/shows.js";
+import { showsRouter } from "./routes/tv-shows.js";
 
 dotenv.config();
 
