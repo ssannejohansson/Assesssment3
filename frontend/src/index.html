@@ -3,17 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spoiler Room</title>
+    <title>Review Room</title>
     <link rel="stylesheet" href="./style.css">
+
+    <!-- Google Font import -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="manifest" href="site.webmanifest">
 </head>
 
 <body>
     <!----------------------
     NAVBAR
     ----------------------->
-  <!-- <nav id="navbar" class="hidden"> COMMENT OUT WHEN DONE STYLING --> 
- <nav id="navbar">
-        <span class="logo">Spoiler Room</span>
+    <nav id="navbar" class="hidden">
+        <span class="logo">Review Room</span>
+        <ul class="nav-links">
+            <li><a href="#home-view">Home</a></li>
+            <li><a href="#shows-list">Shows</a></li>
+            <li id="add-show-nav-item" class="hidden"><a id="add-show-link" href="#">Add Show</a></li>
+        </ul>
         <span id="nav-user"></span>
         <button id="logout-btn">Logout</button>
     </nav>
@@ -23,16 +38,21 @@
     ----------------------->
 
     <section id="login-view">
-        <h1>Login</h1>
+        <div class="login-header">
+            <span class="logo">Review Room</span>
+        </div>
 
-        <form id="login-form">
-            <input type="email" id="email" placeholder="Email" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <button id="login-btn" type="submit">Login</button>
-        </form>
+        <div class="login-card">
+            <h1>Log in</h1>
 
-        <p id="login-error" class="error hidden"></p>
+            <form id="login-form">
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button id="login-btn" type="submit">Log in</button>
+            </form>
 
+            <p id="login-error" class="error hidden"></p>
+        </div>
     </section>
 
     <!----------------------
@@ -40,47 +60,139 @@
     ----------------------->
 
     <section id="home-view" class="hidden">
-        <h2>Popular Shows</h2>
+
+        <div id="hero">
+            <div class="hero-content">
+                <h1>Welcome back!</h1>
+                <p>Discover, review and share your favorite shows.</p>
+                <button id="explore-btn" type="button">Explore Shows</button>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h2>Popular Shows</h2>
+        </div>
 
         <p id="loading-message" class="hidden">Loading shows...</p>
-
         <div id="shows-list"></div>
         <p id="shows-error" class="error hidden"></p>
 
-        <div id="add-show-section" class="hidden">
-            <h3>Add New Show</h3>
-            <form id="add-show-form">
-                <input type="text" id="show-title" placeholder="Show Title" required>
-                <textarea id="show-description" placeholder="Show Description"></textarea>
-                <button id="add-show-btn" type="submit">Add Show</button>
-            </form>
-        </div>
 
     </section>
+
+    <!----------------------
+    VIEW: ADD SHOW
+    ----------------------->
+    <section id="add-show-view" class="hidden">
+        <div class="write-review-back">
+            <button type="button" id="back-from-add-show-btn">← Back</button>
+        </div>
+        <div class="write-review-card">
+            <h2>Add New Show</h2>
+
+            <label class="field-label">Title</label>
+            <input type="text" id="show-title" placeholder="e.g. Breaking Bad" required>
+
+            <label class="field-label">Genre</label>
+            <input type="text" id="show-genre" placeholder="e.g. Drama" required>
+
+            <label class="field-label">Year</label>
+            <input type="number" id="show-year" placeholder="e.g. 2008" min="1900" max="2099" required>
+
+            <label class="field-label">Image URL</label>
+            <input type="url" id="show-image-url" placeholder="https://image.tmdb.org/..." required>
+
+            <label class="field-label">Description</label>
+            <textarea id="show-description" placeholder="What is the show about?" required></textarea>
+
+            <button type="button" id="add-show-btn">Add Show</button>
+        </div>
+    </section>
+
     <!----------------------
     VIEW: SHOW DETAILS
     ----------------------->
     <section id="view-detail" class="hidden">
-      <button id="back-btn">← Back</button>
 
-      <h2 id="detail-title"></h2>
-      <p id="detail-review-count"></p>
+        <div class="breadcrumb">
+            <button type="button" id="back-btn" class="breadcrumb-link">Home</button>
+            <span class="breadcrumb-sep">›</span>
+            <span>Shows</span>
+            <span class="breadcrumb-sep">›</span>
+            <span id="breadcrumb-title"></span>
+        </div>
 
-      <div id="review-list"></div>
+        <div class="detail-hero">
+            <img id="detail-poster" class="detail-poster" alt="">
+            <div class="detail-info">
+                <h2 id="detail-title"></h2>
+                <div class="detail-meta">
+                    <span id="detail-genre"></span>
+                    <span class="meta-dot">·</span>
+                    <span id="detail-year"></span>
+                </div>
+                <div class="detail-rating">
+                    <span id="detail-stars"></span>
+                    <span id="detail-review-count"></span>
+                </div>
+                <p id="detail-description"></p>
+            </div>
+        </div>
 
-      <div id="add-review-section" class="hidden">
-        <h3>Write a Review</h3>
-        <input type="number" id="review-rating" placeholder="Rating (1-5)" min="1" max="5" required>
-        <textarea id="review-body" placeholder="Write your review..."></textarea>
-        <button id="add-review-btn" type="button">Publish Review</button>
-      </div>
+        <div class="tabs">
+            <button type="button" class="tab active" data-tab="reviews">Reviews</button>
+            <button type="button" class="tab" data-tab="trailers">Trailers &amp; More</button>
+        </div>
 
+        <div id="tab-reviews" class="tab-content">
+            <div class="reviews-header">
+                <h3>Reviews</h3>
+                <button type="button" id="write-review-btn" class="hidden">Write a Review</button>
+            </div>
+            <div id="review-list"></div>
+        </div>
+
+        <div id="tab-trailers" class="tab-content hidden">
+            <p class="no-content">No trailers available.</p>
+        </div>
+
+    </section>
+
+    <!----------------------
+    VIEW: WRITE REVIEW
+    ----------------------->
+    <section id="write-review-view" class="hidden">
+        <div class="write-review-back">
+            <button type="button" id="back-from-review-btn">← Back</button>
+        </div>
+        <div class="write-review-card">
+            <h2>Write a Review</h2>
+            <p id="review-show-name"></p>
+
+            <label class="field-label">Your Rating</label>
+            <div class="star-picker" id="star-picker">
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+            </div>
+            <input type="hidden" id="review-rating">
+            <p id="rating-error" class="error hidden"></p>
+
+            <label class="field-label">Title <span class="field-optional">(optional)</span></label>
+            <input type="text" id="review-title-input" placeholder="Write a title">
+
+            <label class="field-label">Your Review</label>
+            <textarea id="review-body" placeholder="Write your review here..."></textarea>
+            <button type="button" id="add-review-btn">Publish Review</button>
+        </div>
     </section>
 
     <!----------------------
     SCRIPTS
     ----------------------->
     <script type="module" src="app.js"></script>
-    
+
 </body>
 </html>
