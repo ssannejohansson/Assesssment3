@@ -6,19 +6,13 @@ const API_KEY = "d6f447aba854dd613c1a599728b544a4";
 const BASE_IMAGE_URL = "https://image.tmdb.org/t/p/w500";
 
 const shows = [
-  { id: "1", title: "Breaking Bad", year: 2008 },
-  { id: "2", title: "The Bear", year: 2022 },
-  { id: "3", title: "The Handmaid's Tale", year: 2017 },
-  { id: "4", title: "The Last of Us", year: 2023 },
-  { id: "5", title: "Succession", year: 2018 },
-  { id: "6", title: "Chernobyl", year: 2019 },
-  { id: "7", title: "Sons of Anarchy", year: 2008 },
-  { id: "8", title: "Shameless", year: 2011 },
-  { id: "9", title: "Gangs of London", year: 2020 },
-  { id: "10", title: "The Wire", year: 2002 },
-  { id: "11", title: "Peaky Blinders", year: 2013 },
-  { id: "12", title: "Yellowstone", year: 2018 },
-  { id: "13", title: "Ozark", year: 2017 },
+  { id: "14", title: "The Sopranos", year: 1999 },
+  { id: "15", title: "Mindhunter", year: 2017 },
+  { id: "16", title: "Landman", year: 2024 },
+  { id: "17", title: "Mayor of Kingstown", year: 2021 },
+  { id: "18", title: "Animal Kingdom", year: 2016 },
+  { id: "19", title: "Narcos", year: 2015 },
+  { id: "20", title: "Prison Break", year: 2005 },
 ];
 
 async function fetchPoster(title, year) {

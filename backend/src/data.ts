@@ -461,7 +461,7 @@ export const shows: Show[] = [
       "New Jersey mob boss Tony Soprano navigates the competing demands of his criminal organization and his family life, aided by sessions with his psychiatrist.",
     genre: "Crime/Drama",
     year: 1999,
-    imageUrl: "https://image.tmdb.org/t/p/w500/57okjmCDbjLrEkRFNHibSWQhyMf.jpg",
+    imageUrl: "https://image.tmdb.org/t/p/w500/rTc7ZXdroqjkKivFPvCPX0Ru7uw.jpg",
     reviews: [
       {
         id: "1",
@@ -491,7 +491,7 @@ export const shows: Show[] = [
       "In the late 1970s, two FBI agents pioneer the science of criminal profiling by interviewing imprisoned serial killers to understand and catch active ones.",
     genre: "Crime/Thriller",
     year: 2017,
-    imageUrl: "https://image.tmdb.org/t/p/w500/egCBgGzHJVDkJKTGElKGkhFdxJH.jpg",
+    imageUrl: "https://image.tmdb.org/t/p/w500/eg2eepJtJeRtCZEUJvIYyb2PnYD.jpg",
     reviews: [
       {
         id: "1",
@@ -521,7 +521,7 @@ export const shows: Show[] = [
       "A fast-talking fixer works to keep a scrappy oil company afloat in the booming and brutal West Texas oil fields, balancing deals, danger, and family.",
     genre: "Drama",
     year: 2024,
-    imageUrl: "https://image.tmdb.org/t/p/w500/lWaGFkgEbFB3jCcVwJKS5yJEmap.jpg",
+    imageUrl: "https://image.tmdb.org/t/p/w500/hYthRgS1nvQkGILn9YmqsF8kSk6.jpg",
     reviews: [
       {
         id: "1",
@@ -551,7 +551,7 @@ export const shows: Show[] = [
       "The McLusky family serves as power brokers in Kingstown, Michigan, where the prison industry dominates and they are the only hope for justice in a broken system.",
     genre: "Crime/Drama",
     year: 2021,
-    imageUrl: "https://image.tmdb.org/t/p/w500/tHsPH9EvVRbzn3VmWpjHlVhgAhJ.jpg",
+    imageUrl: "https://image.tmdb.org/t/p/w500/6rWIip9MZELAA0SKii5WqsBDCYW.jpg",
     reviews: [
       {
         id: "1",
@@ -581,7 +581,7 @@ export const shows: Show[] = [
       "A teenager moves in with his estranged relatives after his mother's death, only to discover the Cody family is a dangerous crime family run by a cunning matriarch.",
     genre: "Crime/Drama",
     year: 2016,
-    imageUrl: "https://image.tmdb.org/t/p/w500/qQ3sU5mTGSPj5HMuTXMKqSbFgJQ.jpg",
+    imageUrl: "https://image.tmdb.org/t/p/w500/rzvdKrnSRKPFI0pgqMQknDPpRC9.jpg",
     reviews: [
       {
         id: "1",
@@ -641,7 +641,7 @@ export const shows: Show[] = [
       "A structural engineer gets himself deliberately incarcerated to help break out his brother, who has been wrongly sentenced to death for the murder of the Vice President's brother.",
     genre: "Crime/Thriller",
     year: 2005,
-    imageUrl: "https://image.tmdb.org/t/p/w500/5E1BhkCgjLBlqx557Z5yzcN0i94.jpg",
+    imageUrl: "https://image.tmdb.org/t/p/w500/wnmNPaLvhnMeOqnWlhNkYCZxtda.jpg",
     reviews: [
       {
         id: "1",
