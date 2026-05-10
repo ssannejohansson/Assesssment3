@@ -110,9 +110,12 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
 LOGOUT
 ---------------------- */
 
-document.getElementById("logout-btn").addEventListener("click", async () => {
+const handleLogout = async () => {
     await signOut(auth);
-});
+};
+
+document.getElementById("logout-btn").addEventListener("click", handleLogout);
+document.getElementById("logout-btn-mobile").addEventListener("click", handleLogout);
 
 /* ----------------------
 HOME NAVIGATION
@@ -136,6 +139,13 @@ document.getElementById("shows-link").addEventListener("click", (e) => {
 
 document.getElementById("explore-btn").addEventListener("click", () => {
     document.getElementById("shows-list").scrollIntoView({ behavior: "smooth" });
+});
+
+/* ----------------------
+HAMBURGER MENU (MOBILE)
+---------------------- */
+document.getElementById("hamburger").addEventListener("click", () => {
+    document.querySelector(".nav-links").classList.toggle("open");
 });
 
 /* ----------------------

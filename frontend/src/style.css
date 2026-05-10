@@ -2,15 +2,15 @@
 CSS VARIABLES
 --------------------------------------------- */
 :root {
-      --bg: #141414;
-      --surface: #1f1f1f;
-      --red: #e50914;
-      --red-hover: #b20710;
-      --text: #ffffff;
-      --text-muted: #b3b3b3;
-      --input-bg: #333333;
-      --radius: 4px;
-      }
+    --bg: #141414;
+    --surface: #1f1f1f;
+    --red: #e50914;
+    --red-hover: #b20710;
+    --text: #ffffff;
+    --text-muted: #b3b3b3;
+    --input-bg: #333333;
+    --radius: 4px;
+}
 
 
 /* ------------------------------------------
@@ -105,6 +105,82 @@ nav {
 }
 
 /* ------------------------------------------
+RESPONSIVE NAVBAR
+--------------------------------------------- */
+#hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 1.5rem;
+    padding: 0;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+#hamburger:hover {
+    background: none;
+}
+
+#mobile-logout {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-wrap: wrap;
+        padding: 16px 24px;
+        gap: 0;
+    }
+
+    #hamburger {
+        display: block;
+        margin-left: auto;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+        margin-top: 12px;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 12px 0;
+        border-top: none;
+        color: var(--text-muted);
+    }
+
+    #nav-user {
+        display: none;
+    }
+
+    #logout-btn {
+        display: none;
+    }
+
+    #mobile-logout {
+        display: block;
+        margin-top: 8px;
+    }
+
+    #logout-btn-mobile {
+        background: none;
+        border: 1px solid var(--text-muted);
+        color: var(--text-muted);
+        padding: 6px 16px;
+        font-size: 0.85rem;
+        font-weight: 400;
+        width: 100%;
+    }
+}
+
+/* ------------------------------------------
 BUTTONS
 --------------------------------------------- */
 button {
@@ -116,7 +192,7 @@ button {
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.2s; 
+    transition: background-color 0.2s;
 }
 
 button:hover {
@@ -126,7 +202,8 @@ button:hover {
 /* ------------------------------------------
 INPUTS
 --------------------------------------------- */
-input, textarea {
+input,
+textarea {
     background-color: var(--input-bg);
     color: var(--text);
     border: none;
@@ -137,7 +214,8 @@ input, textarea {
     margin-bottom: 12px;
 }
 
-input::placeholder, textarea::placeholder {
+input::placeholder,
+textarea::placeholder {
     color: var(--text-muted);
 }
 
@@ -167,7 +245,7 @@ VIEW: LOGIN
     position: absolute;
     inset: 0;
     background: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 40%),
-    rgba(0, 0, 0, 0.75);
+        rgba(0, 0, 0, 0.75);
     z-index: 0;
 }
 
@@ -223,6 +301,31 @@ VIEW: LOGIN
 }
 
 /* ------------------------------------------
+VIEW: LOGIN (MOBILE)
+--------------------------------------------- */
+@media (max-width: 768px) {
+    .login-header {
+        padding: 24px 24px;
+    }
+
+    #login-view {
+        align-items: flex-end;
+        background-position: 70% top;
+    }
+
+    .login-card {
+        width: 100%;
+        padding: 40px 24px 48px;
+        min-height: 50vh;
+        background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.95) 20%);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border: none;
+
+    }
+}
+
+/* ------------------------------------------
 VIEW: HOME
 --------------------------------------------- */
 #home-view {
@@ -235,9 +338,9 @@ HERO
 #hero {
     position: relative;
     height: 420px;
-    background: linear-gradient(to right, rgba(0,0,0,0.85) 40%, transparent),
-                linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%),
-                #1a1a2e;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.85) 40%, transparent),
+        linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 60%),
+        #1a1a2e;
     display: flex;
     align-items: center;
     padding: 0 80px;
@@ -475,7 +578,7 @@ DETAIL HERO
 }
 
 .btn-outline:hover {
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 /* ------------------------------------------
