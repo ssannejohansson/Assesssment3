@@ -104,9 +104,7 @@ npm test
 
 ![Passing tests locally](docs/screenshot-tests-local.png)
 
-**Screenshot 2 — Passing GitHub Actions pipeline**
-
-Go to your GitHub repo → Actions tab → click the latest run → take a screenshot of the green checkmark summary. Paste it here:
+**Passing GitHub Actions pipeline**
 
 ![Passing GitHub Actions pipeline](docs/screenshot-pipeline.png)
 
