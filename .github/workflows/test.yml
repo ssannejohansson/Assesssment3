@@ -28,7 +28,7 @@ jobs:
 
       # Run tests and write a summary to the GitHub Actions job summary page
       - name: Run tests
-        run: npx vitest run --reporter=verbose --reporter=github-actions
+        run: npx vitest run --reporter=verbose --reporter=github
         working-directory: ./backend
         env:
           FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
