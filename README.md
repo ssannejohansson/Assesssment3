@@ -100,9 +100,7 @@ npm test
 
 ### Screenshots
 
-**Screenshot 1 — Passing tests locally**
-
-Run `npm test` in the `backend/` folder, then take a screenshot of the terminal output showing all tests passing. Paste it here:
+**Passing tests locally**
 
 ![Passing tests locally](docs/screenshot-tests-local.png)
 
