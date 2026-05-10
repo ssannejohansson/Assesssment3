@@ -110,9 +110,12 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
 LOGOUT
 ---------------------- */
 
-document.getElementById("logout-btn").addEventListener("click", async () => {
+const handleLogout = async () => {
     await signOut(auth);
-});
+};
+
+document.getElementById("logout-btn").addEventListener("click", handleLogout);
+document.getElementById("logout-btn-mobile").addEventListener("click", handleLogout);
 
 /* ----------------------
 HOME NAVIGATION
@@ -139,6 +142,13 @@ document.getElementById("explore-btn").addEventListener("click", () => {
 });
 
 /* ----------------------
+HAMBURGER MENU (MOBILE)
+---------------------- */
+document.getElementById("hamburger").addEventListener("click", () => {
+    document.querySelector(".nav-links").classList.toggle("open");
+});
+
+/* ----------------------
 LOAD SHOWS
 ---------------------- */
 
@@ -161,6 +171,7 @@ const loadShows = async () => {
 
         // Render the show cards into the DOM
         showList.innerHTML = renderShowList(data);
+        renderHeroBg(data);
 
         // attach click to each card after rendering
         document.querySelectorAll(".show-card").forEach((card) => {
@@ -174,6 +185,17 @@ const loadShows = async () => {
         showError.classList.remove("hidden");
     }
 };
+
+/* ----------------------
+HERO BACKGROUND COLLAGE
+---------------------- */
+const renderHeroBg = (shows) => {
+    const bg = document.querySelector(".hero-bg");
+    if (!bg) return;
+
+    const picks = shows.filter(s => s.imageUrl).slice(-6); // take last 6 with images
+    bg.innerHTML = picks.map(s => `<img src="${s.imageUrl}" alt="${s.title}">`).join("");
+}
 
 /* ----------------------
 LOAD SHOW DETAIL
