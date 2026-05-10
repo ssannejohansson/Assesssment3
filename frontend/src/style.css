@@ -138,12 +138,13 @@ input, textarea {
 }
 
 input::placeholder, textarea::placeholder {
-    color: var(--muted);
+    color: var(--text-muted);
 }
 
 textarea {
     height: 120px;
     resize: vertical;
+    font-family: inherit;
 }
 
 /* ------------------------------------------
@@ -562,6 +563,14 @@ REVIEW CARDS
     color: var(--text-muted);
     line-height: 1.6;
     font-size: 0.95rem;
+}
+
+/* ------------------------------------------
+VIEW: ADD SHOW
+--------------------------------------------- */
+#add-show-view {
+    min-height: 100vh;
+    padding: 32px 48px;
 }
 
 /* ------------------------------------------

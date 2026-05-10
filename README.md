@@ -152,11 +152,13 @@ What was challenging:
 - Keeping the frontend and backend auth flow aligned required consistent handling of Firebase state and Bearer tokens.
 - The biggest tradeoff was balancing simplicity for the assignment with enough structure to keep the code readable and testable.
 
-What would I do differently:
+What would implement next:
 
 - I would add input validation on the backend (e.g. reject reviews with a rating outside 1–5, or shows missing required fields) to make the API more robust.
 - I would extract the in-memory data store behind a proper repository interface so it could be swapped for a real database without touching the controllers.
 - I would add more granular error handling on the frontend so each view shows its own error message rather than sharing a single error element.
+- I would add a registration flow so new users can sign up directly in the app rather than relying on a pre-created demo account.
+- I would implement search and filtering on the shows list so users can find a specific show without scrolling through the entire grid.
 
 This is a solo project.
 
