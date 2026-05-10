@@ -156,21 +156,39 @@ VIEW: LOGIN
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: var(--bg);
+    background-image: url('https://image.tmdb.org/t/p/w1280/dzq83RHwQcnP6WGJ6YkenIqeaa5.jpg');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
 }
+
+#login-view::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 40%),
+    rgba(0, 0, 0, 0.75);
+    z-index: 0;
+}
+
 
 .login-header {
     position: absolute;
     top: 0;
     left: 0;
     padding: 24px 48px;
+    z-index: 1;
 }
 
 .login-card {
-    background: rgba(0, 0, 0, 0.75);
+    position: relative;
+    background: rgba(20, 20, 20, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-radius: 4px;
     padding: 60px 68px 40px;
     width: 450px;
+    z-index: 1;
 }
 
 .login-card h1 {
@@ -265,7 +283,7 @@ HERO BACKGROUND COLLAGE
 .hero-bg img {
     flex: 1;
     object-fit: cover;
-    filter: blur(4px) brightness(0.4);
+    filter: blur(6px) brightness(0.4);
     transform: scale(1.05);
 }
 
@@ -327,7 +345,7 @@ SHOW GRID
 
 .show-card__rating {
     font-size: 0.78rem;
-    color: gold;
+    color: var(--red);
     font-weight: 600;
 }
 
