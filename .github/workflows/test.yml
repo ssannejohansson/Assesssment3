@@ -28,10 +28,19 @@ jobs:
 
       # Run tests and write a summary to the GitHub Actions job summary page
       - name: Run tests
-        run: npx vitest run --reporter=verbose --reporter=github
+        run: npx vitest run --reporter=verbose 2>&1 | tee test-output.txt
         working-directory: ./backend
         env:
           FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
           FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_CLIENT_EMAIL }}
           FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
           CLIENT_ORIGIN: ${{ secrets.CLIENT_ORIGIN }}
+
+      - name: Write test summary
+        if: always()
+        working-directory: ./backend
+        run: |
+          echo "## Test Results" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          cat test-output.txt | sed 's/\x1b\[[0-9;]*m//g' >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
