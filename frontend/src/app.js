@@ -161,6 +161,7 @@ const loadShows = async () => {
 
         // Render the show cards into the DOM
         showList.innerHTML = renderShowList(data);
+        renderHeroBg(data);
 
         // attach click to each card after rendering
         document.querySelectorAll(".show-card").forEach((card) => {
@@ -174,6 +175,17 @@ const loadShows = async () => {
         showError.classList.remove("hidden");
     }
 };
+
+/* ----------------------
+HERO BACKGROUND COLLAGE
+---------------------- */
+const renderHeroBg = (shows) => {
+    const bg = document.querySelector(".hero-bg");
+    if (!bg) return;
+
+    const picks = shows.filter(s => s.imageUrl).slice(-6); // take last 6 with images
+    bg.innerHTML = picks.map(s => `<img src="${s.imageUrl}" alt="${s.title}">`).join("");
+}
 
 /* ----------------------
 LOAD SHOW DETAIL
