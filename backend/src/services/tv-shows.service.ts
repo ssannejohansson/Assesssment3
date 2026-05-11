@@ -41,7 +41,7 @@ export const createShow = (input: CreateShowInput): Show => {
     description: input.description,
     genre: input.genre,
     year: input.year,
-    imageUrl: input.imageUrl,
+    imageUrl: input.imageUrl || "https://placehold.co/500x750?text=No+Image",
     reviews: [],
     createdAt: new Date().toISOString(),
     createdBy: input.createdBy,
