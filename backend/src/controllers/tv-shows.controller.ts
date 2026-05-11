@@ -33,11 +33,11 @@ export const postShow = (req: Request, res: Response): void => {
   const { title, description, genre, year, imageUrl } = req.body;
   const user = (req as any).user;
 
-  if (!title || !description || !genre || !year || !imageUrl) {
+  if (!title || !description || !genre || !year) {
     res
       .status(400)
       .json({
-        error: "title, description, genre, year and imageUrl are required",
+        error: "title, description, genre, and year are required",
       });
     return;
   }
